@@ -1,11 +1,15 @@
 import { Injectable } from '@nestjs/common';
-import { DatabaseService } from 'src/shared/database/database.service';
+import { DatabaseService } from '../database/database.service';
 
 @Injectable()
 export class UsersService {
+  private readonly userRepository: DatabaseService['user'];
+
   constructor (
-    private readonly userRepository: DatabaseService['user']
-  ) {}
+    readonly database: DatabaseService
+  ) {
+    this.userRepository = this.database['user'];
+  }
   
   async findOne(username: string) {
     const user = await this.userRepository.findUnique({

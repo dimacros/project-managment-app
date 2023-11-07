@@ -4,9 +4,13 @@ import { DatabaseService } from "src/shared/database/database.service";
 
 @Injectable()
 export class CreateProjectUseCase {
+  private readonly projectRepository: DatabaseService['project'];
+
   constructor (
-    private readonly projectRepository: DatabaseService['project']
-  ) {}
+    readonly database: DatabaseService
+  ) {
+    this.projectRepository = this.database['project'];
+  }
 
   async handle(dto: CreateProjectDto) {
     const project = await this.projectRepository.create({

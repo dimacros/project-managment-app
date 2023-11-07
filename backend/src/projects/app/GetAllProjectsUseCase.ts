@@ -3,9 +3,13 @@ import { DatabaseService } from "src/shared/database/database.service";
 
 @Injectable()
 export class GetAllProjectsUseCase {
+  private readonly projectRepository: DatabaseService['project'];
+
   constructor (
-    private readonly projectRepository: DatabaseService['project']
-  ) {}
+    readonly database: DatabaseService
+  ) {
+    this.projectRepository = this.database['project'];
+  }
 
   async handle() {
     const projects = await this.projectRepository.findMany();

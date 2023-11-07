@@ -17,15 +17,5 @@ services:
       DATABASE_URL: postgres://postgres:postgres@db:5432/main
     depends_on:
       - db
-  frontend:
-    image: node:20-alpine
-    command: npm start
-    working_dir: /app
-    volumes:
-      - ./frontend:/app
-    ports:
-      - 4200:4200
-    depends_on:
-      - backend
 volumes:
   postgres-data:

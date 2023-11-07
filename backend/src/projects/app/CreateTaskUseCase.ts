@@ -4,9 +4,13 @@ import { DatabaseService } from "src/shared/database/database.service";
 
 @Injectable()
 export class CreateTaskUseCase {
+  private readonly taskRepository: DatabaseService['task'];
+
   constructor (
-    private readonly taskRepository: DatabaseService['task']
-  ) {}
+    readonly database: DatabaseService
+  ) {
+    this.taskRepository = this.database['task'];
+  }
 
   async handle(dto: CreateTaskDto) {
     const task = await this.taskRepository.create({

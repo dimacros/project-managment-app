@@ -1,4 +1,12 @@
 # Getting Started
 
-1. Enter the backend directory and run: `npm run start`
-2. Enter the frontend directory and run: `npm run start`
+Requirements:
+ - Docker
+
+Initialize the backend project:
+
+`cd backend && docker compose up`
+
+Initialize the frontend project:
+
+`cd frontend && npm start`
